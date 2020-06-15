@@ -8,9 +8,6 @@ public class SpawnKnifesController : MonoBehaviour {
 
     public void InstantiateNewKnife() {
 
-        if (!GameManager.isGame)
-            return;
-
         GameObject knifes; 
         knifes = Instantiate(knife, transform.position, transform.rotation);
         knifes.transform.parent = gameObject.transform;

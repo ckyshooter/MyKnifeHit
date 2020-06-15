@@ -27,38 +27,35 @@ public class MovimentKnife : MonoBehaviour {
 
     void Update() {
 
-        Debug.Log("1");
-
         if (!GameManager.isGame)
             return;
 
-        Debug.Log("2");
+        if (Input.GetKeyDown(KeyCode.E) && GameManager.ammunition > 0) {
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-
-            Debug.Log("3");
             rb2D.AddForce(transform.up * velocity, ForceMode2D.Force);
+
+            if(!boxCollider2D.isTrigger)
+                GameManager.score++;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if (other.gameObject.tag == "Knife") {
+        transform.parent = other.transform;
+
+        boxCollider2D.isTrigger = true;
+        spawnKnifesController.InstantiateNewKnife();
+        rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        GameManager.ammunition--;
+        Debug.Log("Oi");
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.gameObject.tag == "Knifes") {
+
             GameManager.isGame = false;
             boxCollider2D.enabled = false;
-        } else {
-
-            if (!GameManager.isGame)
-                return;
-
-            transform.parent = other.transform;
-
-            //boxCollider2D.enabled = false;
-            spawnKnifesController.InstantiateNewKnife();
-            rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
-            Debug.Log("Oi");
         }
-
-
     }
 }
