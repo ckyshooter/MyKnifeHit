@@ -20,11 +20,20 @@ public class GameController : MonoBehaviour {
                 nivels[0].SetActive(true);
                 nivels[1].SetActive(false);
                 nivels[2].SetActive(false);
+                nivels[2].SetActive(false);
+                nivels[3].SetActive(false);
                 break;
             case 1:
                 nivels[0].SetActive(false);
                 nivels[1].SetActive(true);
                 nivels[2].SetActive(true);
+                nivels[3].SetActive(false);
+                break;
+            case 2:
+                nivels[0].SetActive(false);
+                nivels[1].SetActive(true);
+                nivels[2].SetActive(true);
+                nivels[3].SetActive(true);
                 break;
         }
     }

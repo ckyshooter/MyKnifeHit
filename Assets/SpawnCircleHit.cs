@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class SpawnCircleHit : MonoBehaviour 
 {
-    public GameObject spawnCircleHit;
+    public GameObject[] spawnCircleHit;
 
     public GameObject circleHit;
 
     public LevelController levelController;
     public void InstantiateSpawnCircleHit() {
+        int randomValeu = Random.Range(0, spawnCircleHit.Length);
+
 
         GameObject circlehit;
-        circlehit = Instantiate(spawnCircleHit, transform.position, transform.rotation);
+        circlehit = Instantiate(spawnCircleHit[randomValeu], transform.position, transform.rotation);
         circlehit.transform.parent = gameObject.transform;
     }
 
@@ -30,7 +32,12 @@ public class SpawnCircleHit : MonoBehaviour
         if (GameManager.ammunition == 0) {
 
             Destroy(circleHit);
-            LevelController.stageInt++;
+
+            if (LevelController.stageInt == 3)
+                LevelController.stageInt = 0;
+            else
+                LevelController.stageInt++;
+
             Debug.Log("Opa");
 
             levelController.NextStage();

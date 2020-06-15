@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour {
 
@@ -14,7 +15,6 @@ public class LevelController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
 
     }
 
@@ -43,5 +43,16 @@ public class LevelController : MonoBehaviour {
                 GameManager.ammunitionStaticHud = 8;
                 break;
         }
+    }
+
+    public void ResetGame() {
+        stageInt = 0;
+        SceneManager.LoadScene("MyScene", LoadSceneMode.Single);
+        GameController.intNivelController = 1;
+        GameManager.ammunition = 0;
+        GameManager.ammunitionStaticHud = 0;
+        GameManager.score = 0;
+        GameManager.isGame = true;
+
     }
 }

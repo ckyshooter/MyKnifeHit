@@ -30,7 +30,7 @@ public class MovimentKnife : MonoBehaviour {
         if (!GameManager.isGame)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E) && GameManager.ammunition > 0) {
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && GameManager.ammunition > 0) {
 
             rb2D.AddForce(transform.up * velocity, ForceMode2D.Force);
 
@@ -56,6 +56,7 @@ public class MovimentKnife : MonoBehaviour {
 
             GameManager.isGame = false;
             boxCollider2D.enabled = false;
+            GameController.intNivelController = 2;
         }
     }
 }
