@@ -13,11 +13,6 @@ public class LevelController : MonoBehaviour {
         NextStage();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     public void NextStage() {
 
         switch (stageInt) {
@@ -46,6 +41,7 @@ public class LevelController : MonoBehaviour {
     }
 
     public void ResetGame() {
+
         stageInt = 0;
         SceneManager.LoadScene("MyScene", LoadSceneMode.Single);
         GameController.intNivelController = 1;
